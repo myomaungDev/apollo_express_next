@@ -1,0 +1,136 @@
+query GET_ALL_POST {
+  all_posts {
+    id
+    title
+    content
+    updatedAt
+    createdAt
+    author
+  }
+}
+
+query GET_POST_BY_ID($id: ID!) {
+  get_post_by_id(id: $id) {
+    title
+    content
+    updatedAt
+    createdAt
+    id
+  }
+}
+
+mutation CREATE_POST($title: String!, $content: String!) {
+  createPost(NewPost: { title: $title, content: $content }) {
+    title
+    content
+    
+  }
+}
+
+mutation UPDATEPOST($title: String!, $content: String!, $id: ID!) {
+  updatePostByID(UpdatePost: { title: $title, content: $content }, id: $id) {
+    title
+    content
+    id
+    author
+    updatedAt
+  }
+}
+
+mutation DELETE_POST_BY_ID($id: ID!) {
+  deletePostByID(id: $id) {
+    id
+    message
+    successmutation UPLOADFILE($file: Upload!) {
+  UploadFile(File: $file) {
+    file
+  }
+}
+  }
+}
+
+mutation UPLOAD_FILE($file: Upload!) {
+  UploadFile(file: $file)
+}
+
+query GET_ALL_USERS{
+  get_all_users{
+    username
+    email
+    firstname
+    lastname
+    updatedAt
+    createdAt
+    id
+  }
+}
+
+query GET_USER_BY_ID($id:ID!){
+  get_user_by_id(id:$id){
+    username
+    firstname
+    lastname
+    email
+    password
+  }
+}
+
+query AUTHENTICATED_PROFILE{
+  authenticated_Profile{
+    firstname
+    lastname
+    email
+    password
+    updatedAt
+    createdAt
+    avatarImg
+    
+  }
+}
+
+mutation CREATE_USER($username:String!,$email:String!,$password:String!,$firstname:String!,$lastname:String!){
+  createUser(NewUser:{username:$username,email:$email,password:$password,firstname:$firstname,lastname:$lastname})
+  {
+    user{
+      username
+      firstname
+      lastname
+      avatarImg
+      email
+      updatedAt
+      createdAt
+    }
+    message
+    success
+    access_token
+  }
+}
+
+mutation LOGIN_USER($email:String!,$password:String!){
+  loginUser(LoginUser:{email:$email,password:$password}){
+    user{
+     firstname
+      lastname
+      email
+      username
+      updatedAt
+      createdAt
+    }
+    message
+    success
+    access_token
+  }
+}
+
+
+mutation UPDATEUSER($username:String!,$firstname:String!,$lastname:String!){
+  updateUser(UpdateUser:{username:$username,firstname:$firstname,lastname:$lastname}){
+   firstname
+    lastname
+    email
+    updatedAt
+    createdAt
+    username
+  }
+}
+
